@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  migrate:
+    build: .
+    ports:
+      - "8000:5000"
+    volumes: 
+      - .:/root
+    working_dir: /root
+    # command: ['/go/bin/migrate','-path','"./migrations"','-database','"sqlite3://database.db"','up']
+    # command: ['/go/bin/migrate','-path','"./migrations"','-database','"sqlite3://database.db"','up']
+    command: ['/go/bin/migrate','-path','/root/migrations','-database','sqlite3:///root/database.db','up']
+    tty: true
